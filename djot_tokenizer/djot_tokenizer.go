@@ -2,6 +2,7 @@ package djot_tokenizer
 
 import (
 	"bytes"
+	"fmt"
 	"strings"
 
 	"github.com/sivukhin/godjot/tokenizer"
@@ -119,6 +120,7 @@ func BuildInlineDjotTokens(
 					lastInline.Type != SpanInline^tokenizer.Open && lastInline.Type != ImageSpanInline^tokenizer.Open {
 					continue
 				}
+				fmt.Println("State, tokenType: ", state, tokenType)
 				next, ok = MatchInlineToken(reader, state, tokenType)
 				if ok {
 					var attributes tokenizer.Attributes
